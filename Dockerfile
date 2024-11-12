@@ -13,7 +13,6 @@ RUN apt-get update && \
 RUN git clone https://github.com/mimo-x/Code-Review-GPT-Gitlab.git .
 
 # 安装 Python 依赖
-COPY requirements.txt .
 RUN pip install --upgrade setuptools pip && pip3 install -r requirements.txt
 
 # 暴露应用程序的端口（如果有需要）
