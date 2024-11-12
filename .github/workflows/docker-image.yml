@@ -19,7 +19,7 @@ jobs:
       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
     - name: 编译镜像
-      run: docker build . --file Dockerfile --tag Code-Review-GPT-Gitlab:$(date +%s)
+      run: docker build . --file Dockerfile --tag code-review-gpt-gitlab:$(date +%s)
 
     - name: 推送镜像
-      run: docker push ghcr.io/lostmaniac/Code-Review-GPT-Gitlab:$(date +%s)
+      run: docker push ghcr.io/lostmaniac/code-review-gpt-gitlab:$(date +%s)
