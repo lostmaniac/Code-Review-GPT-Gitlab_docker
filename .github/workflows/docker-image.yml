@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: 登录仓库
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: 编译镜像
+      run: docker build . --file Dockerfile --tag Code-Review-GPT-Gitlab:$(date +%s)
+
+    - name: 推送镜像
+      run: docker push ghcr.io/lostmaniac/Code-Review-GPT-Gitlab:$(date +%s)
